@@ -665,7 +665,7 @@ export default function App() {
   }
 
   return (
-    <div className="h-screen h-[100dvh] max-h-screen w-full bg-[#F2F5EE] dark:bg-[#0B1613] flex flex-col md:flex-row font-sans text-[#21322C] dark:text-gray-100 antialiased relative selection:bg-[#C9862E]/30 selection:text-[#1D4137] overflow-hidden">
+    <div className="h-screen h-[100dvh] max-h-screen w-full bg-[#F8FAFC] dark:bg-[#0B1613] flex flex-col md:flex-row font-sans text-[#1E293B] dark:text-gray-100 antialiased relative selection:bg-amber-400/30 selection:text-emerald-950 overflow-hidden">
       {/* Latar Belakang Khas Kalimantan Selatan (Pasar Terapung, Rumah Banjar, Sasirangan) */}
       <KalselBodyBackdrop isDark={isDark} />
 

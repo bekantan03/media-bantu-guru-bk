@@ -47,8 +47,23 @@ interface SidebarProps {
 interface NavItem {
   key: PageKey;
   label: string;
+  subLabel?: string;
   icon: React.ReactNode;
-  section: string;
+  badge?: number | string;
+  iconBox: string;
+  activeGradient: string;
+  hoverClass: string;
+  bulletColor: string;
+}
+
+interface MenuGroup {
+  id: string;
+  title: string;
+  roleBadge: string;
+  headerColor: string;
+  badgeColor: string;
+  bulletColor: string;
+  items: NavItem[];
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -83,35 +98,184 @@ export const Sidebar: React.FC<SidebarProps> = ({
     } catch {}
   };
 
-  const navItems: NavItem[] = [
-    { key: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-4 h-4" />, section: 'Utama' },
-    { key: 'siswa', label: 'Data Siswa', icon: <Users className="w-4 h-4" />, section: 'Utama' },
-    { key: 'siswa_keluar', label: 'Siswa Keluar / Pindah', icon: <UserX className="w-4 h-4" />, section: 'Utama' },
-    { key: 'absensi', label: 'Absensi Harian', icon: <FileCheck2 className="w-4 h-4" />, section: 'Kedisiplinan' },
-    { key: 'kasus', label: 'Kasus & Pelanggaran', icon: <AlertTriangle className="w-4 h-4" />, section: 'Kedisiplinan' },
-    { key: 'terlambat', label: 'Keterlambatan', icon: <Clock className="w-4 h-4" />, section: 'Kedisiplinan' },
-    { key: 'konseling', label: 'Konseling BK', icon: <MessageSquare className="w-4 h-4" />, section: 'Layanan BK' },
-    { key: 'jadwal', label: 'Jadwal Kegiatan', icon: <Calendar className="w-4 h-4" />, section: 'Layanan BK' },
-    { key: 'print_piket', label: 'Cetak', icon: <Printer className="w-4 h-4" />, section: 'Pusat Cetak & Laporan' },
+  // Structured menu groups with vibrant color identities
+  const menuGroups: MenuGroup[] = [
+    {
+      id: 'utama',
+      title: 'Navigasi Utama',
+      roleBadge: 'Semua Peran',
+      headerColor: 'text-emerald-300',
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+      bulletColor: 'text-emerald-400',
+      items: [
+        {
+          key: 'dashboard',
+          label: 'Dashboard',
+          subLabel: 'Statistik & Ringkasan',
+          icon: <LayoutDashboard className="w-4 h-4" />,
+          iconBox: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 group-hover:bg-emerald-500/30 group-hover:text-emerald-200',
+          activeGradient: 'bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 border border-emerald-300/60 shadow-lg shadow-emerald-950/40',
+          hoverClass: 'hover:bg-emerald-900/40 hover:text-white',
+          bulletColor: 'text-emerald-400',
+        },
+      ],
+    },
+    {
+      id: 'kesiswaan',
+      title: 'Kesiswaan & Data',
+      roleBadge: 'Wali Kelas & BK',
+      headerColor: 'text-blue-300',
+      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-400/40',
+      bulletColor: 'text-blue-400',
+      items: [
+        {
+          key: 'siswa',
+          label: 'Data Siswa Aktif',
+          subLabel: 'Profil & Siswa Asuh',
+          icon: <Users className="w-4 h-4" />,
+          badge: siswaAsuhCount > 0 ? siswaAsuhCount : undefined,
+          iconBox: 'bg-blue-500/20 text-blue-300 border-blue-500/40 group-hover:bg-blue-500/30 group-hover:text-blue-200',
+          activeGradient: 'bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 border border-blue-300/60 shadow-lg shadow-blue-950/40',
+          hoverClass: 'hover:bg-blue-900/40 hover:text-white',
+          bulletColor: 'text-blue-400',
+        },
+        {
+          key: 'siswa_keluar',
+          label: 'Siswa Mutasi / Alumni',
+          subLabel: 'Pindah, Keluar, Lulus',
+          icon: <UserX className="w-4 h-4" />,
+          iconBox: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 group-hover:bg-indigo-500/30 group-hover:text-indigo-200',
+          activeGradient: 'bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 border border-indigo-300/60 shadow-lg shadow-indigo-950/40',
+          hoverClass: 'hover:bg-indigo-900/40 hover:text-white',
+          bulletColor: 'text-indigo-400',
+        },
+      ],
+    },
+    {
+      id: 'piket_disiplin',
+      title: 'Piket & Kedisiplinan',
+      roleBadge: 'Guru Piket & Tatib',
+      headerColor: 'text-amber-300',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+      bulletColor: 'text-amber-400',
+      items: [
+        {
+          key: 'absensi',
+          label: 'Presensi Harian',
+          subLabel: 'Absen Kelas Hari Ini',
+          icon: <FileCheck2 className="w-4 h-4" />,
+          iconBox: 'bg-teal-500/20 text-teal-300 border-teal-500/40 group-hover:bg-teal-500/30 group-hover:text-teal-200',
+          activeGradient: 'bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 border border-teal-300/60 shadow-lg shadow-teal-950/40',
+          hoverClass: 'hover:bg-teal-900/40 hover:text-white',
+          bulletColor: 'text-teal-400',
+        },
+        {
+          key: 'terlambat',
+          label: 'Keterlambatan Siswa',
+          subLabel: 'Izin Masuk & Rekap',
+          icon: <Clock className="w-4 h-4" />,
+          iconBox: 'bg-amber-500/20 text-amber-300 border-amber-500/40 group-hover:bg-amber-500/30 group-hover:text-amber-200',
+          activeGradient: 'bg-gradient-to-r from-amber-500 via-orange-600 to-amber-600 border border-amber-300/60 shadow-lg shadow-amber-950/40',
+          hoverClass: 'hover:bg-amber-900/40 hover:text-white',
+          bulletColor: 'text-amber-400',
+        },
+        {
+          key: 'kasus',
+          label: 'Kasus & Pelanggaran',
+          subLabel: 'Catatan Poin Tata Tertib',
+          icon: <AlertTriangle className="w-4 h-4" />,
+          iconBox: 'bg-rose-500/20 text-rose-300 border-rose-500/40 group-hover:bg-rose-500/30 group-hover:text-rose-200',
+          activeGradient: 'bg-gradient-to-r from-rose-600 via-red-600 to-pink-600 border border-rose-300/60 shadow-lg shadow-rose-950/40',
+          hoverClass: 'hover:bg-rose-900/40 hover:text-white',
+          bulletColor: 'text-rose-400',
+        },
+      ],
+    },
+    {
+      id: 'layanan_bk',
+      title: 'Layanan Bimbingan (BK)',
+      roleBadge: 'Guru BK',
+      headerColor: 'text-purple-300',
+      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-400/40',
+      bulletColor: 'text-purple-400',
+      items: [
+        {
+          key: 'konseling',
+          label: 'Layanan Konseling',
+          subLabel: 'Individu & Kelompok',
+          icon: <MessageSquare className="w-4 h-4" />,
+          iconBox: 'bg-purple-500/20 text-purple-300 border-purple-500/40 group-hover:bg-purple-500/30 group-hover:text-purple-200',
+          activeGradient: 'bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 border border-purple-300/60 shadow-lg shadow-purple-950/40',
+          hoverClass: 'hover:bg-purple-900/40 hover:text-white',
+          bulletColor: 'text-purple-400',
+        },
+        {
+          key: 'jadwal',
+          label: 'Jadwal Kegiatan BK',
+          subLabel: 'Home Visit & Pertemuan',
+          icon: <Calendar className="w-4 h-4" />,
+          iconBox: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40 group-hover:bg-fuchsia-500/30 group-hover:text-fuchsia-200',
+          activeGradient: 'bg-gradient-to-r from-fuchsia-600 via-pink-600 to-rose-600 border border-fuchsia-300/60 shadow-lg shadow-fuchsia-950/40',
+          hoverClass: 'hover:bg-fuchsia-900/40 hover:text-white',
+          bulletColor: 'text-fuchsia-400',
+        },
+      ],
+    },
+    {
+      id: 'cetak_laporan',
+      title: 'Dokumen & Laporan',
+      roleBadge: 'Pelaporan Resmi',
+      headerColor: 'text-sky-300',
+      badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-400/40',
+      bulletColor: 'text-sky-400',
+      items: [
+        {
+          key: 'print_piket',
+          label: 'Pusat Cetak Dokumen',
+          subLabel: 'Surat, Jurnal, Form & Kartu',
+          icon: <Printer className="w-4 h-4" />,
+          iconBox: 'bg-sky-500/20 text-sky-300 border-sky-500/40 group-hover:bg-sky-500/30 group-hover:text-sky-200',
+          activeGradient: 'bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 border border-sky-300/60 shadow-lg shadow-sky-950/40',
+          hoverClass: 'hover:bg-sky-900/40 hover:text-white',
+          bulletColor: 'text-sky-400',
+        },
+      ],
+    },
   ];
 
-  // Admin-only menu items
+  // Admin-only menu group with vibrant rose & emerald colors
   if (isAdmin) {
-    navItems.push({
-      key: 'users',
-      label: 'Kelola Pengguna',
-      icon: <UserCog className="w-4 h-4" />,
-      section: 'Pengaturan System',
-    });
-    navItems.push({
-      key: 'branding',
-      label: 'Profil Sekolah',
-      icon: <School className="w-4 h-4" />,
-      section: 'Pengaturan System',
+    menuGroups.push({
+      id: 'pengaturan',
+      title: 'Pengaturan Sistem',
+      roleBadge: 'Khusus Admin',
+      headerColor: 'text-rose-300',
+      badgeColor: 'bg-rose-500/25 text-rose-300 border-rose-400/40',
+      bulletColor: 'text-rose-400',
+      items: [
+        {
+          key: 'branding',
+          label: 'Profil & Identitas',
+          subLabel: 'Kop Surat & Logo Sekolah',
+          icon: <School className="w-4 h-4" />,
+          iconBox: 'bg-amber-500/20 text-yellow-300 border-yellow-500/40 group-hover:bg-amber-500/30 group-hover:text-yellow-200',
+          activeGradient: 'bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 border border-amber-300/60 shadow-lg shadow-amber-950/40',
+          hoverClass: 'hover:bg-amber-900/40 hover:text-white',
+          bulletColor: 'text-amber-400',
+        },
+        {
+          key: 'users',
+          label: 'Kelola Pengguna',
+          subLabel: 'Akun Guru BK & Admin',
+          icon: <UserCog className="w-4 h-4" />,
+          iconBox: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 group-hover:bg-emerald-500/30 group-hover:text-emerald-200',
+          activeGradient: 'bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 border border-emerald-300/60 shadow-lg shadow-emerald-950/40',
+          hoverClass: 'hover:bg-emerald-900/40 hover:text-white',
+          bulletColor: 'text-emerald-400',
+        },
+      ],
     });
   }
-
-  let currentSection = '';
 
   return (
     <>
@@ -131,7 +295,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <aside
         id="sidebar-navigation"
-        className={`fixed md:static top-0 left-0 h-screen h-[100dvh] max-h-[100dvh] w-72 sm:w-72 md:w-60 lg:w-64 max-w-[85vw] md:max-w-none bg-gradient-to-b from-[#0F241E] via-[#16382F] to-[#0D1E18] text-emerald-50 flex flex-col z-50 md:z-20 transition-transform duration-300 ease-in-out shrink-0 border-r border-[#2D5F52]/40 shadow-2xl md:shadow-none overflow-hidden ${
+        className={`fixed md:static top-0 left-0 h-screen h-[100dvh] max-h-[100dvh] w-72 sm:w-72 md:w-60 lg:w-64 max-w-[85vw] md:max-w-none bg-gradient-to-b from-[#0A1D17] via-[#0F2820] to-[#091512] text-slate-100 flex flex-col z-50 md:z-20 transition-transform duration-300 ease-in-out shrink-0 border-r border-emerald-800/40 shadow-2xl md:shadow-none overflow-hidden ${
           isOpen ? 'translate-x-0 pointer-events-auto' : '-translate-x-full md:translate-x-0 pointer-events-none md:pointer-events-auto'
         }`}
       >
@@ -146,7 +310,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         />
 
         {/* Brand Header with Modern Glassmorphism & Banjar Gold Touch */}
-        <div className="relative z-10 px-4 py-3.5 border-b border-emerald-800/60 bg-[#163B30]/90 backdrop-blur-md flex items-center justify-between gap-2.5">
+        <div className="relative z-10 px-4 py-3.5 border-b border-emerald-800/60 bg-[#123027]/95 backdrop-blur-md flex items-center justify-between gap-2.5">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-xl bg-white/95 p-0.5 border border-amber-400/80 flex items-center justify-center shrink-0 shadow-md ring-2 ring-amber-400/20">
               <img
@@ -184,82 +348,98 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <SasiranganRibbon className="relative z-10" />
 
         {/* Navigation List */}
-        <nav className="relative z-10 flex-1 overflow-y-auto px-3 py-3 space-y-1 scrollbar-thin scrollbar-thumb-emerald-800/50">
-          {navItems.map((item) => {
-            const showSectionLabel = item.section !== currentSection;
-            if (showSectionLabel) {
-              currentSection = item.section;
-            }
-            const isActive = activePage === item.key;
-
-            return (
-              <React.Fragment key={item.key}>
-                {showSectionLabel && (
-                  <div className="pt-3 pb-1 px-3 text-[10px] font-bold tracking-wider text-amber-300/80 uppercase flex items-center justify-between">
-                    <span className="flex items-center gap-1.5">
-                      <span className="text-[#C9862E] text-[10px]">◆</span>
-                      <span>{item.section}</span>
-                    </span>
-                    {item.section === 'Pengaturan System' && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/25 text-amber-300 border border-amber-400/40 uppercase tracking-tight mr-1">
-                        Khusus Admin
-                      </span>
-                    )}
-                    <span className="h-px flex-1 bg-gradient-to-r from-[#C9862E]/30 to-transparent ml-2" />
-                  </div>
-                )}
-
-                <button
-                  onClick={() => {
-                    onNavigate(item.key);
-                    if (window.innerWidth < 768) {
-                      onClose();
-                    }
-                  }}
-                  className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 group cursor-pointer ${
-                    isActive
-                      ? 'text-[#201504] shadow-md font-bold'
-                      : 'text-emerald-100/85 hover:text-white hover:bg-emerald-800/40'
-                  }`}
+        <nav className="relative z-10 flex-1 overflow-y-auto px-3 py-3 space-y-3.5 scrollbar-thin scrollbar-thumb-emerald-800/50">
+          {menuGroups.map((group) => (
+            <div key={group.id} className="space-y-1.5">
+              {/* Group Section Header with Role & Usage Badge */}
+              <div className="pt-2 pb-0.5 px-2 flex items-center justify-between text-[10px] font-bold tracking-wider uppercase">
+                <span className={`flex items-center gap-1.5 truncate ${group.headerColor}`}>
+                  <span className={`${group.bulletColor} text-[10px] shrink-0 drop-shadow-xs`}>◆</span>
+                  <span className="truncate">{group.title}</span>
+                </span>
+                <span
+                  className={`text-[9px] font-bold px-1.5 py-0.2 rounded-md border uppercase tracking-tight shrink-0 ml-1.5 shadow-2xs ${group.badgeColor}`}
                 >
-                  {/* Morphing active background pill with Sasirangan Gold Ochre & Diamond Accent */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="sidebarActivePill"
-                      className="absolute inset-0 bg-gradient-to-r from-[#E5A03A] via-[#C9862E] to-[#B87724] rounded-xl shadow-md border border-amber-300/50"
-                      transition={{ type: 'spring', stiffness: 450, damping: 35 }}
-                    />
-                  )}
+                  {group.roleBadge}
+                </span>
+              </div>
 
-                  <div className="relative z-10 flex items-center gap-2.5">
-                    <span
-                      className={`p-1 rounded-lg transition-transform duration-200 group-hover:scale-110 ${
+              {/* Group Menu Items */}
+              <div className="space-y-1">
+                {group.items.map((item) => {
+                  const isActive = activePage === item.key;
+
+                  return (
+                    <button
+                      key={item.key}
+                      onClick={() => {
+                        onNavigate(item.key);
+                        if (window.innerWidth < 768) {
+                          onClose();
+                        }
+                      }}
+                      className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 group cursor-pointer border ${
                         isActive
-                          ? 'bg-[#201504]/15 text-[#201504]'
-                          : 'bg-emerald-950/40 text-emerald-300/90 group-hover:text-amber-300 border border-emerald-700/30'
+                          ? 'text-white shadow-md font-bold border-transparent'
+                          : `text-slate-200/90 border-transparent ${item.hoverClass}`
                       }`}
                     >
-                      {item.icon}
-                    </span>
-                    <span>{item.label}</span>
-                  </div>
+                      {/* Morphing active background pill with custom vibrant item gradient */}
+                      {isActive && (
+                        <motion.div
+                          layoutId="sidebarActivePill"
+                          className={`absolute inset-0 rounded-xl ${item.activeGradient}`}
+                          transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                        />
+                      )}
 
-                  {/* Active Indicator: Martapura Diamond (Hiris Gagatas) */}
-                  {isActive && (
-                    <span className="relative z-10 text-[#201504] text-[11px] font-extrabold pr-1">
-                      ◆
-                    </span>
-                  )}
+                      <div className="relative z-10 flex items-center gap-2.5 min-w-0">
+                        <span
+                          className={`p-1.5 rounded-lg transition-all duration-200 group-hover:scale-110 shrink-0 ${
+                            isActive
+                              ? 'bg-white/20 text-white border border-white/40 shadow-xs'
+                              : item.iconBox
+                          }`}
+                        >
+                          {item.icon}
+                        </span>
+                        <div className="flex flex-col text-left min-w-0">
+                          <span className={`truncate leading-snug ${isActive ? 'text-white font-bold' : 'text-slate-100 group-hover:text-white'}`}>
+                            {item.label}
+                          </span>
+                          {item.subLabel && (
+                            <span
+                              className={`text-[9.5px] truncate font-normal leading-tight ${
+                                isActive ? 'text-white/85 font-medium' : 'text-slate-300/70 group-hover:text-slate-200'
+                              }`}
+                            >
+                              {item.subLabel}
+                            </span>
+                          )}
+                        </div>
+                      </div>
 
-                  {item.key === 'siswa' && siswaAsuhCount > 0 && !isActive && (
-                    <span className="relative z-10 px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-800 text-amber-300 border border-emerald-700">
-                      {siswaAsuhCount}
-                    </span>
-                  )}
-                </button>
-              </React.Fragment>
-            );
-          })}
+                      {/* Right Indicators (Badge & Diamond) */}
+                      <div className="relative z-10 flex items-center gap-1.5 shrink-0">
+                        {item.badge !== undefined && !isActive && (
+                          <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-blue-500/30 text-blue-200 border border-blue-400/40 shadow-xs">
+                            {item.badge}
+                          </span>
+                        )}
+
+                        {/* Active Indicator: Martapura Diamond (Hiris Gagatas) */}
+                        {isActive && (
+                          <span className="text-white text-[12px] font-extrabold pr-0.5 drop-shadow-xs">
+                            ◆
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
 
           {/* Special Feature Card: Pesona Banua & Filosofi Kalsel */}
           <div className="pt-3 pb-1">

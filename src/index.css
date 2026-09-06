@@ -2,24 +2,24 @@
 
 @layer base {
   :root {
-    --ink: #21322C;
-    --muted: #647169;
-    --paper: #EFF2EA;
+    --ink: #1E293B;
+    --muted: #64748B;
+    --paper: #F8FAFC;
     --surface: #FFFFFF;
-    --primary: #2D5F52;
-    --primary-dark: #1D4137;
-    --primary-tint: #DCE8E1;
-    --accent: #C9862E;
-    --accent-tint: #F3E3C8;
-    --line: #D9E0D4;
-    --ringan: #4C8C6B;
-    --ringan-tint: #E1EFE7;
-    --sedang: #C9862E;
-    --sedang-tint: #F5E7CE;
-    --berat: #B5473A;
-    --berat-tint: #F5DEDA;
-    --asuh: #7B5EA7;
-    --asuh-tint: #EBE4F5;
+    --primary: #1E4E42;
+    --primary-dark: #12332A;
+    --primary-tint: #E2EFEA;
+    --accent: #D97706;
+    --accent-tint: #FEF3C7;
+    --line: #E2E8F0;
+    --ringan: #10B981;
+    --ringan-tint: #ECFDF5;
+    --sedang: #F59E0B;
+    --sedang-tint: #FFFBEB;
+    --berat: #EF4444;
+    --berat-tint: #FEF2F2;
+    --asuh: #8B5CF6;
+    --asuh-tint: #F5F3FF;
 
     /* Aksen Budaya Kalimantan Selatan: Kain Sasirangan Banjar (Gigi Haruan, Hiris Gagatas, & Jelujur Jahit) */
     --bg-kalsel-sasirangan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpolygon points='48,16 80,48 48,80 16,48' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='48,27 69,48 48,69 27,48' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='48' cy='48' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='48' cy='38' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='48' cy='58' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='38' cy='48' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='58' cy='48' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='0,32 32,0 0,0' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='0,21 21,0' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='0' cy='0' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='10' cy='0' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='0' cy='10' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='96,32 64,0 96,0' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='96,21 75,0' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='96' cy='0' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='86' cy='0' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='96' cy='10' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='0,64 32,96 0,96' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='0,75 21,96' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='0' cy='96' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='10' cy='96' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='0' cy='86' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='96,64 64,96 96,96' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='96,75 75,96' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='96' cy='96' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='86' cy='96' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='96' cy='86' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpath d='M17,24 L24,17 L31,24 L24,31 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='24,20 28,24 24,28 20,24' fill='%23C9862E' fill-opacity='0.18'/%3E%3Cpath d='M65,24 L72,17 L79,24 L72,31 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='72,20 76,24 72,28 68,24' fill='%23C9862E' fill-opacity='0.18'/%3E%3Cpath d='M17,72 L24,65 L31,72 L24,79 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='24,68 28,72 24,76 20,72' fill='%23C9862E' fill-opacity='0.18'/%3E%3Cpath d='M65,72 L72,65 L79,72 L72,78 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='72,68 76,72 72,76 68,72' fill='%23C9862E' fill-opacity='0.18'/%3E%3Ccircle cx='48' cy='4' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3Ccircle cx='48' cy='92' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3Ccircle cx='4' cy='48' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3Ccircle cx='92' cy='48' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3C/svg%3E");

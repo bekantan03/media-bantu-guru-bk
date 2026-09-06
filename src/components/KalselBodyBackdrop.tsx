@@ -73,12 +73,12 @@ export const KalselBodyBackdrop: React.FC<KalselBodyBackdropProps> = ({ isDark =
       {isDark ? (
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1613]/90 via-[#0B1613]/80 to-[#08120F]/95 mix-blend-multiply" />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F2F5EE]/90 via-[#F2F5EE]/75 to-[#EBF0E4]/92 mix-blend-soft-light" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-[#F8FAFC]/85 to-[#F1F5F9]/90 mix-blend-soft-light" />
       )}
 
       {/* 4. Subtle Ambient Light Glow in Kalimantan Gold (Intan Martapura warmth) */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-400/10 dark:bg-amber-500/5 blur-3xl" />
-      <div className="absolute top-1/3 -left-32 w-80 h-80 rounded-full bg-emerald-600/10 dark:bg-emerald-500/5 blur-3xl" />
+      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-300/15 dark:bg-amber-500/5 blur-3xl" />
+      <div className="absolute top-1/3 -left-32 w-80 h-80 rounded-full bg-emerald-400/10 dark:bg-emerald-500/5 blur-3xl" />
 
       {/* 5. Traditional Banjar Sasirangan Geometric Border Accents (Subtle top & bottom) */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#142E27] via-[#C9862E] via-[#2D5F52] via-[#F59E0B] to-[#142E27] opacity-85 shadow-sm" />

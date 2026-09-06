@@ -69,19 +69,26 @@ interface TopbarProps {
   onCloseSheetsModal?: () => void;
 }
 
-const PAGE_META: Record<PageKey, { title: string; sub: string }> = {
-  dashboard: { title: 'Dashboard Utama', sub: 'Ringkasan aktivitas bimbingan dan kedisiplinan siswa' },
-  siswa: { title: 'Data Siswa Aktif', sub: 'Kelola profil, riwayat poin, dan status siswa asuh' },
-  siswa_keluar: { title: 'Siswa Keluar / Pindah', sub: 'Daftar alumni, siswa berhenti, pindah, atau keluar' },
-  absensi: { title: 'Absensi Kehadiran Harian', sub: 'Pencatatan kehadiran harian per kelas (Hadir, Sakit, Izin, Alpa)' },
-  kasus: { title: 'Kasus & Pelanggaran', sub: 'Catatan pelanggaran dan akumulasi poin kedisiplinan' },
-  terlambat: { title: 'Keterlambatan Siswa', sub: 'Catatan keterlambatan harian dan rekap bulanan / semester' },
-  konseling: { title: 'Layanan Konseling BK', sub: 'Riwayat konseling individu, kelompok, dan bimbingan klasikal' },
-  jadwal: { title: 'Jadwal Kegiatan BK', sub: 'Agenda layanan BK, kunjungan rumah (home visit), dan kelas' },
-  print_piket: { title: 'Pusat Cetak Dokumen & Laporan BK', sub: 'Laporan Rekapitulasi, Surat Panggilan, Jurnal Piket, Formulir BK & Kartu Siswa' },
-  laporan: { title: 'Pusat Cetak & Laporan Rekap', sub: 'Laporan Rekapitulasi, Surat Panggilan, Jurnal Piket, Formulir BK & Kartu Siswa' },
-  users: { title: 'Kelola Pengguna', sub: 'Manajemen akun administrator dan guru BK' },
-  branding: { title: 'Upload Logo & Identitas', sub: 'Pengaturan logo aplikasi, logo sekolah resmi, dan kop surat' },
+interface PageMetaItem {
+  title: string;
+  sub: string;
+  category: string;
+  roleLabel: string;
+}
+
+const PAGE_META: Record<PageKey, PageMetaItem> = {
+  dashboard: { title: 'Dashboard Utama', sub: 'Ringkasan aktivitas bimbingan dan kedisiplinan siswa', category: 'Utama', roleLabel: 'Semua Pengguna' },
+  siswa: { title: 'Data Siswa Aktif', sub: 'Kelola profil, riwayat poin, dan status siswa asuh', category: 'Kesiswaan', roleLabel: 'Wali Kelas & BK' },
+  siswa_keluar: { title: 'Siswa Keluar / Pindah', sub: 'Daftar alumni, siswa berhenti, pindah, atau keluar', category: 'Kesiswaan', roleLabel: 'Kesiswaan' },
+  absensi: { title: 'Absensi Kehadiran Harian', sub: 'Pencatatan kehadiran harian per kelas (Hadir, Sakit, Izin, Alpa)', category: 'Piket & Disiplin', roleLabel: 'Guru Piket' },
+  kasus: { title: 'Kasus & Pelanggaran', sub: 'Catatan pelanggaran dan akumulasi poin kedisiplinan', category: 'Piket & Disiplin', roleLabel: 'Tim Tatib' },
+  terlambat: { title: 'Keterlambatan Siswa', sub: 'Catatan keterlambatan harian dan rekap bulanan / semester', category: 'Piket & Disiplin', roleLabel: 'Guru Piket' },
+  konseling: { title: 'Layanan Konseling BK', sub: 'Riwayat konseling individu, kelompok, dan bimbingan klasikal', category: 'Layanan BK', roleLabel: 'Guru BK' },
+  jadwal: { title: 'Jadwal Kegiatan BK', sub: 'Agenda layanan BK, kunjungan rumah (home visit), dan kelas', category: 'Layanan BK', roleLabel: 'Guru BK' },
+  print_piket: { title: 'Pusat Cetak Dokumen & Laporan BK', sub: 'Laporan Rekapitulasi, Surat Panggilan, Jurnal Piket, Formulir BK & Kartu Siswa', category: 'Dokumen & Laporan', roleLabel: 'Pelaporan Resmi' },
+  laporan: { title: 'Pusat Cetak & Laporan Rekap', sub: 'Laporan Rekapitulasi, Surat Panggilan, Jurnal Piket, Formulir BK & Kartu Siswa', category: 'Dokumen & Laporan', roleLabel: 'Pelaporan Resmi' },
+  users: { title: 'Kelola Pengguna', sub: 'Manajemen akun administrator dan guru BK', category: 'Pengaturan Sistem', roleLabel: 'Khusus Admin' },
+  branding: { title: 'Profil & Identitas Sekolah', sub: 'Pengaturan logo aplikasi, logo sekolah resmi, dan kop surat', category: 'Pengaturan Sistem', roleLabel: 'Khusus Admin' },
 };
 
 export const Topbar: React.FC<TopbarProps> = ({
@@ -344,7 +351,20 @@ export const Topbar: React.FC<TopbarProps> = ({
                 transition={{ duration: 0.15 }}
                 className="min-w-0 flex-1"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {meta.category && (
+                    <span
+                      className={`inline-flex items-center gap-1 px-1.5 py-0.2 rounded-md text-[9.5px] sm:text-[10px] font-bold uppercase tracking-tight shadow-2xs border shrink-0 ${
+                        isLightPreset
+                          ? 'bg-amber-100/90 text-amber-900 border-amber-300/80'
+                          : 'bg-black/35 text-amber-300 border-amber-400/35'
+                      }`}
+                    >
+                      <span>{meta.category}</span>
+                      <span className="opacity-50">•</span>
+                      <span className={isLightPreset ? 'text-emerald-900' : 'text-emerald-200'}>{meta.roleLabel}</span>
+                    </span>
+                  )}
                   <h1
                     className={`font-serif font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-tight leading-tight drop-shadow-xs truncate ${
                       isLightPreset ? 'text-[#1D4137]' : 'text-white'

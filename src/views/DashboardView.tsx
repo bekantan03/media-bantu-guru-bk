@@ -27,6 +27,10 @@ import {
   Check,
   Gem,
   Landmark,
+  FileCheck2,
+  UserX,
+  School,
+  UserCog,
 } from 'lucide-react';
 import kalselBanuaPanorama from '../assets/images/kalsel_banua_panorama_1788537768915.jpg';
 import { SasiranganRibbon, KalselHeritageModal } from '../components/KalselAccents';
@@ -642,6 +646,178 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div className="text-[11px] font-medium text-[#647169] dark:text-gray-400 truncate">{card.sub}</div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Alur Kerja & Kelompok Modul Berdasarkan Penggunaan (Quick Module Hub) */}
+      <div className="bg-white dark:bg-[#1A2E27] rounded-2xl p-4 sm:p-5 border border-[#D9E0D4] dark:border-[#2D483F] shadow-xs space-y-3.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#D9E0D4] dark:border-[#2D483F] pb-3">
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2">
+              <span className="p-1 rounded-md bg-[#2D5F52] dark:bg-[#6EE7B7] text-white dark:text-[#0D201B]">
+                <Layers className="w-4 h-4" />
+              </span>
+              <h3 className="font-serif font-bold text-base text-[#1D4137] dark:text-gray-100">
+                Pusat Modul Berdasarkan Penggunaan &amp; Peran
+              </h3>
+            </div>
+            <p className="text-xs text-[#647169] dark:text-gray-400">
+              Akses cepat menu aplikasi yang dikelompokkan sesuai tugas kerja harian sekolah.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Card 1: Kesiswaan & Database */}
+          <div className="rounded-xl p-3.5 bg-white dark:bg-[#152520] border border-blue-200/90 dark:border-blue-900/40 shadow-xs hover:shadow-md hover:border-blue-400 flex flex-col justify-between space-y-3 transition-all">
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="p-1.5 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300">
+                  <Users className="w-4 h-4" />
+                </span>
+                <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-blue-500/15 text-blue-700 dark:text-blue-300 border border-blue-400/30 uppercase">
+                  Wali Kelas &amp; BK
+                </span>
+              </div>
+              <h4 className="font-bold text-xs text-slate-800 dark:text-gray-100">
+                Kesiswaan &amp; Basis Data
+              </h4>
+              <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-snug">
+                Manajemen data pokok siswa, identitas kelas, dan status pembinaan asuh.
+              </p>
+            </div>
+            <div className="space-y-1 pt-1 border-t border-slate-100 dark:border-[#2D483F]/70">
+              <button
+                onClick={() => onNavigate('siswa')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-[#1E362E] hover:text-blue-700 dark:hover:text-blue-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Data Siswa Aktif</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+              <button
+                onClick={() => onNavigate('siswa_keluar')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-[#1E362E] hover:text-blue-700 dark:hover:text-blue-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Siswa Mutasi / Alumni</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 2: Piket & Kedisiplinan */}
+          <div className="rounded-xl p-3.5 bg-white dark:bg-[#152520] border border-amber-200/90 dark:border-amber-900/40 shadow-xs hover:shadow-md hover:border-amber-400 flex flex-col justify-between space-y-3 transition-all">
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300">
+                  <Clock className="w-4 h-4" />
+                </span>
+                <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-400/30 uppercase">
+                  Guru Piket &amp; Tatib
+                </span>
+              </div>
+              <h4 className="font-bold text-xs text-slate-800 dark:text-gray-100">
+                Piket &amp; Kedisiplinan
+              </h4>
+              <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-snug">
+                Presensi harian siswa, izin keterlambatan masuk, dan pencatatan poin pelanggaran.
+              </p>
+            </div>
+            <div className="space-y-1 pt-1 border-t border-slate-100 dark:border-[#2D483F]/70">
+              <button
+                onClick={() => onNavigate('absensi')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-amber-50 dark:hover:bg-[#1E362E] hover:text-amber-700 dark:hover:text-amber-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Presensi Absensi Kelas</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+              <button
+                onClick={() => onNavigate('terlambat')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-amber-50 dark:hover:bg-[#1E362E] hover:text-amber-700 dark:hover:text-amber-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Keterlambatan Masuk</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+              <button
+                onClick={() => onNavigate('kasus')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-amber-50 dark:hover:bg-[#1E362E] hover:text-amber-700 dark:hover:text-amber-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Kasus &amp; Poin Pelanggaran</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 3: Layanan BK */}
+          <div className="rounded-xl p-3.5 bg-white dark:bg-[#152520] border border-purple-200/90 dark:border-purple-900/40 shadow-xs hover:shadow-md hover:border-purple-400 flex flex-col justify-between space-y-3 transition-all">
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300">
+                  <MessageSquare className="w-4 h-4" />
+                </span>
+                <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-purple-500/15 text-purple-800 dark:text-purple-300 border border-purple-400/30 uppercase">
+                  Guru BK
+                </span>
+              </div>
+              <h4 className="font-bold text-xs text-slate-800 dark:text-gray-100">
+                Layanan Bimbingan (BK)
+              </h4>
+              <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-snug">
+                Sesi konseling individu, bimbingan kelompok, serta penjadwalan home visit.
+              </p>
+            </div>
+            <div className="space-y-1 pt-1 border-t border-slate-100 dark:border-[#2D483F]/70">
+              <button
+                onClick={() => onNavigate('konseling')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-[#1E362E] hover:text-purple-700 dark:hover:text-purple-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Catatan Konseling Siswa</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+              <button
+                onClick={() => onNavigate('jadwal')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-[#1E362E] hover:text-purple-700 dark:hover:text-purple-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Jadwal &amp; Agenda Kegiatan</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 4: Cetak & Dokumen Resmi */}
+          <div className="rounded-xl p-3.5 bg-white dark:bg-[#152520] border border-sky-200/90 dark:border-sky-900/40 shadow-xs hover:shadow-md hover:border-sky-400 flex flex-col justify-between space-y-3 transition-all">
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="p-1.5 rounded-lg bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300">
+                  <Printer className="w-4 h-4" />
+                </span>
+                <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-400/30 uppercase">
+                  Dokumen Resmi
+                </span>
+              </div>
+              <h4 className="font-bold text-xs text-slate-800 dark:text-gray-100">
+                Pusat Cetak &amp; Laporan
+              </h4>
+              <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-snug">
+                Pencetakan surat panggilan orang tua, jurnal piket, surat pernyataan, dan kartu siswa.
+              </p>
+            </div>
+            <div className="space-y-1 pt-1 border-t border-slate-100 dark:border-[#2D483F]/70">
+              <button
+                onClick={() => onNavigate('print_piket')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-sky-50 dark:hover:bg-[#1E362E] hover:text-sky-700 dark:hover:text-sky-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Surat Panggilan Orang Tua</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+              <button
+                onClick={() => onNavigate('print_piket')}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-gray-200 hover:bg-sky-50 dark:hover:bg-[#1E362E] hover:text-sky-700 dark:hover:text-sky-300 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>• Jurnal Piket &amp; Formulir BK</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Rekapitulasi 1 Semester / Multi-Periode (Kasus, Terlambat, Sesi Konseling) */}
