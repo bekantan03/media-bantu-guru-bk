@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ink: #21322C;
+    --muted: #647169;
+    --paper: #EFF2EA;
+    --surface: #FFFFFF;
+    --primary: #2D5F52;
+    --primary-dark: #1D4137;
+    --primary-tint: #DCE8E1;
+    --accent: #C9862E;
+    --accent-tint: #F3E3C8;
+    --line: #D9E0D4;
+    --ringan: #4C8C6B;
+    --ringan-tint: #E1EFE7;
+    --sedang: #C9862E;
+    --sedang-tint: #F5E7CE;
+    --berat: #B5473A;
+    --berat-tint: #F5DEDA;
+    --asuh: #7B5EA7;
+    --asuh-tint: #EBE4F5;
+
+    /* Aksen Budaya Kalimantan Selatan: Kain Sasirangan Banjar (Gigi Haruan, Hiris Gagatas, & Jelujur Jahit) */
+    --bg-kalsel-sasirangan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpolygon points='48,16 80,48 48,80 16,48' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='48,27 69,48 48,69 27,48' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='48' cy='48' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='48' cy='38' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='48' cy='58' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='38' cy='48' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='58' cy='48' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='0,32 32,0 0,0' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='0,21 21,0' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='0' cy='0' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='10' cy='0' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='0' cy='10' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='96,32 64,0 96,0' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='96,21 75,0' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='96' cy='0' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='86' cy='0' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='96' cy='10' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='0,64 32,96 0,96' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='0,75 21,96' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='0' cy='96' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='10' cy='96' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='0' cy='86' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpolygon points='96,64 64,96 96,96' fill='none' stroke='%232D5F52' stroke-width='1.4' stroke-opacity='0.16' stroke-dasharray='3,3'/%3E%3Cpolygon points='96,75 75,96' fill='none' stroke='%23C9862E' stroke-width='1' stroke-opacity='0.20'/%3E%3Ccircle cx='96' cy='96' r='3.2' fill='%23C9862E' fill-opacity='0.24'/%3E%3Ccircle cx='86' cy='96' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Ccircle cx='96' cy='86' r='1.4' fill='%232D5F52' fill-opacity='0.20'/%3E%3Cpath d='M17,24 L24,17 L31,24 L24,31 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='24,20 28,24 24,28 20,24' fill='%23C9862E' fill-opacity='0.18'/%3E%3Cpath d='M65,24 L72,17 L79,24 L72,31 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='72,20 76,24 72,28 68,24' fill='%23C9862E' fill-opacity='0.18'/%3E%3Cpath d='M17,72 L24,65 L31,72 L24,79 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='24,68 28,72 24,76 20,72' fill='%23C9862E' fill-opacity='0.18'/%3E%3Cpath d='M65,72 L72,65 L79,72 L72,78 Z' fill='none' stroke='%232D5F52' stroke-width='1.2' stroke-opacity='0.15'/%3E%3Cpolygon points='72,68 76,72 72,76 68,72' fill='%23C9862E' fill-opacity='0.18'/%3E%3Ccircle cx='48' cy='4' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3Ccircle cx='48' cy='92' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3Ccircle cx='4' cy='48' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3Ccircle cx='92' cy='48' r='1.2' fill='%23C9862E' fill-opacity='0.22'/%3E%3C/svg%3E");
+
+    --bg-kalsel-sasirangan-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpolygon points='48,16 80,48 48,80 16,48' fill='none' stroke='%236EE7B7' stroke-width='1.4' stroke-opacity='0.14' stroke-dasharray='3,3'/%3E%3Cpolygon points='48,27 69,48 48,69 27,48' fill='none' stroke='%23FBBF24' stroke-width='1' stroke-opacity='0.18'/%3E%3Ccircle cx='48' cy='48' r='3.2' fill='%23FBBF24' fill-opacity='0.22'/%3E%3Ccircle cx='48' cy='38' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='48' cy='58' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='38' cy='48' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='58' cy='48' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Cpolygon points='0,32 32,0 0,0' fill='none' stroke='%236EE7B7' stroke-width='1.4' stroke-opacity='0.14' stroke-dasharray='3,3'/%3E%3Cpolygon points='0,21 21,0' fill='none' stroke='%23FBBF24' stroke-width='1' stroke-opacity='0.18'/%3E%3Ccircle cx='0' cy='0' r='3.2' fill='%23FBBF24' fill-opacity='0.22'/%3E%3Ccircle cx='10' cy='0' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='0' cy='10' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Cpolygon points='96,32 64,0 96,0' fill='none' stroke='%236EE7B7' stroke-width='1.4' stroke-opacity='0.14' stroke-dasharray='3,3'/%3E%3Cpolygon points='96,21 75,0' fill='none' stroke='%23FBBF24' stroke-width='1' stroke-opacity='0.18'/%3E%3Ccircle cx='96' cy='0' r='3.2' fill='%23FBBF24' fill-opacity='0.22'/%3E%3Ccircle cx='86' cy='0' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='96' cy='10' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Cpolygon points='0,64 32,96 0,96' fill='none' stroke='%236EE7B7' stroke-width='1.4' stroke-opacity='0.14' stroke-dasharray='3,3'/%3E%3Cpolygon points='0,75 21,96' fill='none' stroke='%23FBBF24' stroke-width='1' stroke-opacity='0.18'/%3E%3Ccircle cx='0' cy='96' r='3.2' fill='%23FBBF24' fill-opacity='0.22'/%3E%3Ccircle cx='10' cy='96' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='0' cy='86' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Cpolygon points='96,64 64,96 96,96' fill='none' stroke='%236EE7B7' stroke-width='1.4' stroke-opacity='0.14' stroke-dasharray='3,3'/%3E%3Cpolygon points='96,75 75,96' fill='none' stroke='%23FBBF24' stroke-width='1' stroke-opacity='0.18'/%3E%3Ccircle cx='96' cy='96' r='3.2' fill='%23FBBF24' fill-opacity='0.22'/%3E%3Ccircle cx='86' cy='96' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Ccircle cx='96' cy='86' r='1.4' fill='%236EE7B7' fill-opacity='0.18'/%3E%3Cpath d='M17,24 L24,17 L31,24 L24,31 Z' fill='none' stroke='%236EE7B7' stroke-width='1.2' stroke-opacity='0.14'/%3E%3Cpolygon points='24,20 28,24 24,28 20,24' fill='%23FBBF24' fill-opacity='0.16'/%3E%3Cpath d='M65,24 L72,17 L79,24 L72,31 Z' fill='none' stroke='%236EE7B7' stroke-width='1.2' stroke-opacity='0.14'/%3E%3Cpolygon points='72,20 76,24 72,28 68,24' fill='%23FBBF24' fill-opacity='0.16'/%3E%3Cpath d='M17,72 L24,65 L31,72 L24,79 Z' fill='none' stroke='%236EE7B7' stroke-width='1.2' stroke-opacity='0.14'/%3E%3Cpolygon points='24,68 28,72 24,76 20,72' fill='%23FBBF24' fill-opacity='0.16'/%3E%3Cpath d='M65,72 L72,65 L79,72 L72,78 Z' fill='none' stroke='%236EE7B7' stroke-width='1.2' stroke-opacity='0.14'/%3E%3Cpolygon points='72,68 76,72 72,76 68,72' fill='%23FBBF24' fill-opacity='0.16'/%3E%3Ccircle cx='48' cy='4' r='1.2' fill='%23FBBF24' fill-opacity='0.20'/%3E%3Ccircle cx='48' cy='92' r='1.2' fill='%23FBBF24' fill-opacity='0.20'/%3E%3Ccircle cx='4' cy='48' r='1.2' fill='%23FBBF24' fill-opacity='0.20'/%3E%3Ccircle cx='92' cy='48' r='1.2' fill='%23FBBF24' fill-opacity='0.20'/%3E%3C/svg%3E");
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* Dark Mode Overrides */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0E1A17 !important;
+  color: #E2E8F0 !important;
+}
+
+/* Backgrounds in Dark Mode */
+html.dark .bg-\[\#EFF2EA\],
+html.dark .bg-\[\#EFF2EA\]\/90 {
+  background-color: #13241F !important;
+}
+
+html.dark .bg-white {
+  background-color: #1A2E27 !important;
+  color: #E2E8F0 !important;
+}
+
+html.dark .bg-\[\#F7F9F6\],
+html.dark .bg-\[\#F3F5F0\] {
+  background-color: #142520 !important;
+}
+
+/* Text Colors in Dark Mode */
+html.dark .text-\[\#1D4137\] {
+  color: #6EE7B7 !important;
+}
+
+html.dark .text-\[\#21322C\] {
+  color: #F1F5F9 !important;
+}
+
+html.dark .text-\[\#647169\] {
+  color: #94A3B8 !important;
+}
+
+/* Borders in Dark Mode */
+html.dark .border-\[\#D9E0D4\],
+html.dark .border-\[\#D9E0D4\]\/60 {
+  border-color: #2D483F !important;
+}
+
+/* Badges & Tints in Dark Mode */
+html.dark .bg-\[\#DCE8E1\] {
+  background-color: #203A32 !important;
+  color: #6EE7B7 !important;
+}
+
+html.dark .bg-\[\#E1EFE7\] {
+  background-color: #17382B !important;
+  color: #6EE7B7 !important;
+}
+
+html.dark .bg-\[\#F5E7CE\],
+html.dark .bg-\[\#F3E3C8\]\/60 {
+  background-color: #382B17 !important;
+  color: #FCD34D !important;
+}
+
+html.dark .bg-\[\#F5DEDA\] {
+  background-color: #3B1C1A !important;
+  color: #FCA5A5 !important;
+}
+
+/* Form Inputs, Selects, and Textareas in Dark Mode */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #12211C !important;
+  color: #F1F5F9 !important;
+  border-color: #2D483F !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Custom Scrollbars in Dark Mode */
+html.dark ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(110, 231, 183, 0.25);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(110, 231, 183, 0.45);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(45, 95, 82, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 95, 82, 0.45);
+}
+
+/* Print Specific Rules */
+@media print {
+  /* Sembunyikan elemen navigasi dan tombol interaktif saat cetak */
+  nav,
+  aside,
+  header,
+  footer,
+  button,
+  .print\:hidden,
+  .no-print,
+  [data-no-print] {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    font-size: 11pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  main {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  #printArea,
+  #laporanPrintArea,
+  .print-area {
+    display: block !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    page-break-inside: auto;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
+  }
+
+  th,
+  td {
+    border-color: #333333 !important;
+  }
+
+  @page {
+    size: auto;
+    margin: 10mm 12mm 12mm 12mm;
+  }
+}
