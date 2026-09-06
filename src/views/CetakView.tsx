@@ -150,6 +150,7 @@ export const CetakView: React.FC<CetakViewProps> = ({
   const [filterTingkatKasus, setFilterTingkatKasus] = useState('');
   const [filterStatusKasus, setFilterStatusKasus] = useState('');
   const [filterStatusKeluar, setFilterStatusKeluar] = useState('');
+  const [hideNamaRekap, setHideNamaRekap] = useState(false);
 
   const [yRekap, mRekap] = selectedBulanRekap.split('-').map(Number);
   const monthNameRekap = mRekap ? BULAN[mRekap - 1] : 'Semua Periode';
@@ -276,6 +277,7 @@ export const CetakView: React.FC<CetakViewProps> = ({
   const [formatPiket, setFormatPiket] = useState<'daftar' | 'matriks' | 'bulanan'>('daftar');
   const [selectedKelasPiket, setSelectedKelasPiket] = useState(params.kelas || 'semua');
   const [selectedBulanPiket, setSelectedBulanPiket] = useState(thisMonthKey());
+  const [hideNamaPiketMatriks, setHideNamaPiketMatriks] = useState(false);
 
   const studentsForPiket = useMemo(() => {
     const pool = selectedKelasPiket === 'semua'
@@ -710,7 +712,19 @@ export const CetakView: React.FC<CetakViewProps> = ({
             </div>
 
             {/* Tombol Cetak & Ekspor */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              {tabRekap === 'terlambat' && (
+                <label className="inline-flex items-center gap-2 px-3 py-2 bg-[#EFF2EA]/80 dark:bg-black/30 border border-[#D9E0D4] dark:border-[#2D483F] rounded-xl text-xs font-bold text-[#1D4137] dark:text-gray-200 cursor-pointer hover:bg-[#EFF2EA] select-none transition-all">
+                  <input
+                    type="checkbox"
+                    checked={hideNamaRekap}
+                    onChange={(e) => setHideNamaRekap(e.target.checked)}
+                    className="rounded text-[#2D5F52] focus:ring-[#2D5F52] w-3.5 h-3.5"
+                  />
+                  <span>Kosongkan Nama (Isi Manual)</span>
+                </label>
+              )}
+
               <button
                 onClick={() =>
                   handlePrintSubmenu(
@@ -862,8 +876,12 @@ export const CetakView: React.FC<CetakViewProps> = ({
                           <tr key={t.id} className="border-b border-black">
                             <td className="border border-black p-1.5 text-center font-mono">{idx + 1}</td>
                             <td className="border border-black p-1.5 text-center whitespace-nowrap">{fmtDate(t.tanggal)}</td>
-                            <td className="border border-black p-1.5 font-bold">{s?.nama || '-'}</td>
-                            <td className="border border-black p-1.5 text-center font-medium">{s?.kelas || '-'}</td>
+                            <td className="border border-black p-1.5 font-bold">
+                              {hideNamaRekap ? '' : (s?.nama || '-')}
+                            </td>
+                            <td className="border border-black p-1.5 text-center font-medium">
+                              {hideNamaRekap ? '' : (s?.kelas || '-')}
+                            </td>
                             <td className="border border-black p-1.5 text-center font-mono">{t.jam || '-'}</td>
                             <td className="border border-black p-1.5 text-center font-bold">{t.menit ? `${t.menit} mnt` : '-'}</td>
                             <td className="border border-black p-1.5 leading-tight">{t.keterangan || '-'}</td>
@@ -1432,6 +1450,18 @@ export const CetakView: React.FC<CetakViewProps> = ({
                   className="px-3 py-2 bg-[#EFF2EA]/60 dark:bg-black/30 border border-[#D9E0D4] dark:border-[#2D483F] rounded-xl text-xs font-bold text-[#1D4137] dark:text-gray-100"
                 />
               </div>
+
+              {formatPiket === 'matriks' && (
+                <label className="inline-flex items-center gap-2 px-3 py-2 mt-4 bg-[#EFF2EA]/80 dark:bg-black/30 border border-[#D9E0D4] dark:border-[#2D483F] rounded-xl text-xs font-bold text-[#1D4137] dark:text-gray-200 cursor-pointer hover:bg-[#EFF2EA] select-none transition-all">
+                  <input
+                    type="checkbox"
+                    checked={hideNamaPiketMatriks}
+                    onChange={(e) => setHideNamaPiketMatriks(e.target.checked)}
+                    className="rounded text-[#2D5F52] focus:ring-[#2D5F52] w-3.5 h-3.5"
+                  />
+                  <span>Kosongkan Nama (Isi Manual)</span>
+                </label>
+              )}
             </div>
 
             <button
@@ -1532,9 +1562,11 @@ export const CetakView: React.FC<CetakViewProps> = ({
                         <tr key={siswa.id} className="h-6">
                           <td className="border border-black p-1 font-mono">{idx + 1}</td>
                           <td className="border border-black p-1 text-left font-bold truncate max-w-[150px]">
-                            {siswa.nama}
+                            {hideNamaPiketMatriks ? '' : siswa.nama}
                           </td>
-                          <td className="border border-black p-1">{siswa.kelas}</td>
+                          <td className="border border-black p-1">
+                            {hideNamaPiketMatriks ? '' : siswa.kelas}
+                          </td>
                           {Array.from({ length: 31 }).map((_, i) => {
                             const day = i + 1;
                             if (day > daysInMonth) {

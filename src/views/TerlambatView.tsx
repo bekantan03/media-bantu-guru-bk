@@ -54,6 +54,7 @@ export const TerlambatView: React.FC<TerlambatViewProps> = ({
   const [rekapBulan, setRekapBulan] = useState(thisMonthKey());
   const [rekapTa, setRekapTa] = useState(currentTahunAjaran());
   const [rekapSemester, setRekapSemester] = useState<'ganjil' | 'genap'>(currentSemester());
+  const [hideNamaRekap, setHideNamaRekap] = useState(false);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -395,19 +396,31 @@ export const TerlambatView: React.FC<TerlambatViewProps> = ({
               )}
             </div>
 
-            <button
-              onClick={() => {
-                printDirectElement('rekapTerlambatPrintArea', {
-                  title: `Rekap Keterlambatan - ${branding.schoolName || 'Sekolah'}`,
-                  orientation: 'portrait',
-                });
-              }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2D5F52] text-white rounded-xl text-xs font-bold hover:bg-[#1D4137] transition-all shadow-xs"
-              title="Cetak langsung ke printer fisik tanpa perlu download"
-            >
-              <Printer className="w-4 h-4" />
-              <span>Cetak Rekap Langsung</span>
-            </button>
+            <div className="flex items-center gap-3">
+              <label className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#EFF2EA]/80 border border-[#D9E0D4] rounded-xl text-xs font-bold text-[#1D4137] cursor-pointer hover:bg-[#EFF2EA] select-none transition-all">
+                <input
+                  type="checkbox"
+                  checked={hideNamaRekap}
+                  onChange={(e) => setHideNamaRekap(e.target.checked)}
+                  className="rounded text-[#2D5F52] focus:ring-[#2D5F52] w-3.5 h-3.5"
+                />
+                <span>Kosongkan Nama (Isi Manual)</span>
+              </label>
+
+              <button
+                onClick={() => {
+                  printDirectElement('rekapTerlambatPrintArea', {
+                    title: `Rekap Keterlambatan - ${branding.schoolName || 'Sekolah'}`,
+                    orientation: 'portrait',
+                  });
+                }}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2D5F52] text-white rounded-xl text-xs font-bold hover:bg-[#1D4137] transition-all shadow-xs"
+                title="Cetak langsung ke printer fisik tanpa perlu download"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Cetak Rekap Langsung</span>
+              </button>
+            </div>
           </div>
 
           <div
@@ -453,15 +466,25 @@ export const TerlambatView: React.FC<TerlambatViewProps> = ({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#D9E0D4]/60">
-                    {rekapRanked.map(({ siswa, count }) => (
-                      <tr key={siswa!.id} className="hover:bg-[#EFF2EA]/50">
-                        <td className="p-3 font-bold text-[#1D4137]">{siswa!.nama}</td>
-                        <td className="p-3 font-semibold text-[#1D4137]">Kelas {siswa!.kelas || '-'}</td>
+                    {rekapRanked.map(({ siswa, count }, idx) => (
+                      <tr key={siswa!.id || idx} className="hover:bg-[#EFF2EA]/50 h-9">
+                        <td className="p-3 font-bold text-[#1D4137]">
+                          {hideNamaRekap ? (
+                            <span className="inline-block w-36 border-b border-dashed border-gray-400"></span>
+                          ) : (
+                            siswa!.nama
+                          )}
+                        </td>
+                        <td className="p-3 font-semibold text-[#1D4137]">
+                          {hideNamaRekap ? '' : `Kelas ${siswa!.kelas || '-'}`}
+                        </td>
                         <td className="p-3 text-center font-mono font-bold text-base text-[#B5473A]">
-                          {count}x
+                          {hideNamaRekap ? '' : `${count}x`}
                         </td>
                         <td className="p-3">
-                          {count >= 5 ? (
+                          {hideNamaRekap ? (
+                            ''
+                          ) : count >= 5 ? (
                             <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-900 border border-red-200">
                               Perlu Perhatian Khusus (Panggilan Wali)
                             </span>
